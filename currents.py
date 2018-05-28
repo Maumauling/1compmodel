@@ -31,7 +31,7 @@ def I_leak(V, g_leak, E_leak):
     return g_leak * (E_leak - V)
 
 
-def I_syn(V, g_syn, E_syn):
+def I_syn(V, t, g_DC, g_AC, f, delta, E_syn):
     ''' synaptic current w. max. conduct. g_syn & reversal pot. E_syn
     [I_syn] = mA'''
-    return g_syn * (E_syn - V)
+    return (g_DC + g_AC *(np.sin(2*np.pi*f*t)+np.sin(2*np.pi*f*t+delta))) * (E_syn - V)
