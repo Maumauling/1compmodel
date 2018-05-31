@@ -8,6 +8,7 @@ Created on Fri May 25 11:21:06 2018
 #%% import schemes
 
 import numpy as np
+from gating_variables import alpha_n, beta_n, alpha_m, beta_m, alpha_h, beta_h
 
 #%% dynamics for needed currents: Na, K, leak, synaptic
 

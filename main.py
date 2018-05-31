@@ -19,7 +19,7 @@ from matplotlib.ticker import FormatStrFormatter
 
 from parameters import *
 from currents import I_Na, I_K, I_leak, I_syn, mhnV
-from gating_variables import alpha_n, beta_n, alpha_m, beta_m, alpha_h, beta_h
+
 
 #%% set local parameters
 
@@ -52,11 +52,11 @@ chann_data.to_csv('mhn_channels_1compmod.csv', index = False)
 curr_data.to_csv('currents_1compmod.csv', index = False)
 
 #'''PLOTSPECS'''
-'''
+
 fig = plt.figure(dpi=85)
 
 gs = gridspec.GridSpec(8, 2)
-gs.update(hspace=0.7)
+gs.update(hspace=0.9)
 ax1 = plt.subplot(gs[0:2, :])
 ax2 = plt.subplot(gs[2:4, :])
 ax3 = plt.subplot(gs[4:6, :])
@@ -76,4 +76,3 @@ ax2.yaxis.set_major_formatter(FormatStrFormatter('%.1f'))
 ax3.set_ylabel('INa,IK,Ileak', size=10)
 ax3.yaxis.set_major_formatter(FormatStrFormatter('%.1f'))
 ax3.set_xlabel('time [ms]', size=10)
-'''
