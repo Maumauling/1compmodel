@@ -25,14 +25,6 @@ ampl_left = 1
 ampl_right = 1
 
 
-def g_syn_som(f,t, g_DC, g_AC, ampl_left, ampl_right, delta):
-    ''' synaptic input modelled via conductance, AC and DC input conduct.,
-    where only AC is ITD-dependent,
-    f = sound freq., delta = interaural sound phase difference
-    added amplitudes for left and right ear input strength
-    [g_syn] = mA / mV'''
-    return g_DC + g_AC * (ampl_left * np.sin(2*np.pi*f*t) + ampl_right*np.sin(2*np.pi*f*t + delta))
-
 #%% reversal potentials
     
 E_K = -75  # [mV]
