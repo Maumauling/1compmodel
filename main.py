@@ -54,13 +54,13 @@ ik = I_K(sol[:,2], sol[:,3], g_K_som, E_K)
 ileak = I_leak(sol[:,3], g_leak_som, E_leak)
 isyn = I_syn(sol[:,3], t_range, g_DC, g_AC, f, delta, E_syn)
 
-volt_data = pd.DataFrame(sol[:,3], index = t_range, columns = ['memb_voltage'])
-volt_data.index.names =['time']
-chann_data = pd.DataFrame(sol[:,0:3], index = t_range, columns = ['m channel', 'h channel', 'n channel'])
-chann_data.index.names =['time']
-curr_data = pd.DataFrame(np.column_stack([ina, ik, ileak, isyn]), index = t_range, columns = ['I_Na', 'I_K', 'I_leak', 'I_syn'])
-curr_data.index.names =['time']
+volt_data = pd.DataFrame(np.column_stack([t_range, sol[:,3]]), columns = ['time', 'memb_voltage'])
+chann_data = pd.DataFrame(np.column_stack([t_range, sol[:,0:3]]), columns = ['time', 'm channel', 'h channel', 'n channel'])
+curr_data = pd.DataFrame(np.column_stack([t_range, ina, ik, ileak, isyn]), columns = ['time', 'I_Na', 'I_K', 'I_leak', 'I_syn'])
 
+volt_data.to_csv('membr_volt_1compmod.csv', index = False)
+chann_data.to_csv('mhn_channels_1compmod.csv', index = False)
+curr_data.to_csv('currents_1compmod.csv', index = False)
 
 #'''PLOTSPECS'''
 '''
