@@ -19,7 +19,7 @@ right ear'''
 g_K_som = 480 * 10**(-9)  # [mA / mV]
 g_leak_som = 192 * 10**(-9)  # [mA / mV]
 g_Na_som = 7 * 10**(-6)  # [mA / mV]
-g_AC = 6 * 10**(-9)  # [mA / mV]
+g_AC = 8 * 10**(-9)  # [mA / mV]
 g_DC = 11.88 * 10**(-9)  # [mA / mV]
 ampl_left = 1
 ampl_right = 1

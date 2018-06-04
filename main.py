@@ -24,8 +24,8 @@ from currents import I_Na, I_K, I_leak, I_syn, mhnV
 #%% set local parameters
 
 time_step = 0.01  # [ms]
-t_range = np.arange(0, 500, time_step)  # [ms]
-f = 0.004  # sound frequency
+t_range = np.arange(0, 50, time_step)  # [ms]
+f = 0.2# sound frequency
 delta = 0  # interaural phase difference
 C_som = 24 * 10**(-12)  # [mA * s / mV]
 
@@ -44,35 +44,9 @@ ileak = I_leak(sol[:,3], g_leak_som, E_leak)
 isyn = I_syn(sol[:,3], t_range, g_DC, g_AC, f, delta, E_syn)
 
 volt_data = pd.DataFrame(np.column_stack([t_range, sol[:,3]]), columns = ['time', 'memb_voltage'])
-chann_data = pd.DataFrame(np.column_stack([t_range, sol[:,0:3]]), columns = ['time', 'm channel', 'h channel', 'n channel'])
+chann_data = pd.DataFrame(np.column_stack([t_range, sol[:,0:3]]), columns = ['time', 'm_channel', 'h_channel', 'n_channel'])
 curr_data = pd.DataFrame(np.column_stack([t_range, ina, ik, ileak, isyn]), columns = ['time', 'I_Na', 'I_K', 'I_leak', 'I_syn'])
 
-volt_data.to_csv('membr_volt_1compmod.csv', index = False)
-chann_data.to_csv('mhn_channels_1compmod.csv', index = False)
-curr_data.to_csv('currents_1compmod.csv', index = False)
-
-#'''PLOTSPECS'''
-
-fig = plt.figure(dpi=85)
-
-gs = gridspec.GridSpec(8, 2)
-gs.update(hspace=0.9)
-ax1 = plt.subplot(gs[0:2, :])
-ax2 = plt.subplot(gs[2:4, :])
-ax3 = plt.subplot(gs[4:6, :])
-ax4 = plt.subplot(gs[6:8, :])
-
-ax1.plot(t_range, sol[:,3])
-ax2.plot(t_range, sol[:,0], t_range, sol[:,1], t_range, sol[:,2])
-ax3.plot(t_range, ina, t_range, ik, t_range, ileak)
-ax4.plot(t_range, isyn)
-
-plt.setp(ax1.get_xticklabels(), visible=False)
-plt.setp(ax2.get_xticklabels(), visible=False)
-ax1.set_ylabel('voltage []', size=10)
-ax1.yaxis.set_major_formatter(FormatStrFormatter('%.1f'))
-ax2.set_ylabel('m,h,n \n channel', size=10)
-ax2.yaxis.set_major_formatter(FormatStrFormatter('%.1f'))
-ax3.set_ylabel('INa,IK,Ileak', size=10)
-ax3.yaxis.set_major_formatter(FormatStrFormatter('%.1f'))
-ax3.set_xlabel('time [ms]', size=10)
+volt_data.to_csv('data/membr_volt_1compmod.csv', index = False)
+chann_data.to_csv('data/mhn_channels_1compmod.csv', index = False)
+curr_data.to_csv('data/currents_1compmod.csv', index = False)
