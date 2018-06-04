@@ -27,7 +27,7 @@ sns.set()
 
 
 volt = True
-chann = False
+chann = True
 curr = True
 isyn = True
 
@@ -52,19 +52,24 @@ for ax_idx, row_start, row_stop in zip(range(1,num_axes+1), range(0, num_axes*2,
 if volt:
     voltage = pd.read_csv('data/membr_volt_1compmod.csv')
     ax1.plot(voltage['time'], voltage['memb_voltage'])
+    ax1.set_ylabel('voltage [mV]', size=10)
 
 if chann:
     channels = pd.read_csv('data/mhn_channels_1compmod.csv')
     ax2.plot(channels['time'], channels['m_channel'], channels['time'], channels['h_channel'], channels['time'], channels['n_channel'])
+    ax2.set_ylabel('m, h, n\nchannel', size=10)
 
 if curr:
     currents = pd.read_csv('data/currents_1compmod.csv')
     ax3.plot(currents['time'], currents['I_Na'], currents['time'], currents['I_K'], currents['time'], currents['I_leak'])
-
+    ax3.set_ylabel('I.Na, I.K,\nI.leak', size=10)
+    ax3.yaxis.set_major_formatter(FormatStrFormatter('%.2e'))
+    
 if isyn:
     currents = pd.read_csv('data/currents_1compmod.csv')
     ax4.plot(currents['time'], currents['I_syn'])
-
+    ax4.set_ylabel('I_synaptic', size=10)
+    ax4.yaxis.set_major_formatter(FormatStrFormatter('%.2e'))
 
 #%% PLOT SPECS
 '''
