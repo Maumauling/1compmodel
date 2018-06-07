@@ -21,6 +21,8 @@ import matplotlib.gridspec as gridspec
 import matplotlib.pyplot as plt
 import pandas as pd
 from matplotlib.ticker import FormatStrFormatter
+from matplotlib import rcParams
+rcParams.update({'figure.autolayout': True})
 
 import seaborn as sns
 sns.set()
@@ -30,6 +32,7 @@ volt = True
 chann = True
 curr = True
 isyn = True
+save_fig = False
 
 num_axes = sum([volt, chann, curr, isyn])
 num_axes
@@ -43,7 +46,7 @@ if chann:
 if curr or isyn:
     currents = pd.read_csv('data/currents_1compmod.csv')
     
-fig = plt.figure(dpi=85)
+fig = plt.figure(dpi=100)
 
 gs = gridspec.GridSpec(2*num_axes, 1)
 for ax_idx, row_start, row_stop in zip(range(1,num_axes+1), range(0, num_axes*2, 2), range(2, num_axes*2 +2, 2)):
@@ -53,24 +56,32 @@ if volt:
     voltage = pd.read_csv('data/membr_volt_1compmod.csv')
     ax1.plot(voltage['time'], voltage['memb_voltage'])
     ax1.set_ylabel('voltage [mV]', size=10)
+    plt.setp(ax1.get_xticklabels(), visible=False)
 
 if chann:
     channels = pd.read_csv('data/mhn_channels_1compmod.csv')
     ax2.plot(channels['time'], channels['m_channel'], channels['time'], channels['h_channel'], channels['time'], channels['n_channel'])
     ax2.set_ylabel('m, h, n\nchannel', size=10)
+    plt.setp(ax2.get_xticklabels(), visible=False)
 
 if curr:
     currents = pd.read_csv('data/currents_1compmod.csv')
     ax3.plot(currents['time'], currents['I_Na'], currents['time'], currents['I_K'], currents['time'], currents['I_leak'])
-    ax3.set_ylabel('I.Na, I.K,\nI.leak', size=10)
-    ax3.yaxis.set_major_formatter(FormatStrFormatter('%.2e'))
+    ax3.set_ylabel('I.Na, I.K,\nI.leak [mA]', size=10)
+    ax3.yaxis.set_major_formatter(FormatStrFormatter('%.1e'))
+    plt.setp(ax3.get_xticklabels(), visible=False)
     
 if isyn:
     currents = pd.read_csv('data/currents_1compmod.csv')
     ax4.plot(currents['time'], currents['I_syn'])
-    ax4.set_ylabel('I_synaptic', size=10)
-    ax4.yaxis.set_major_formatter(FormatStrFormatter('%.2e'))
-
+    ax4.set_ylabel('I_synaptic\n[mA]', size=10)
+    ax4.yaxis.set_major_formatter(FormatStrFormatter('%.1e'))
+    ax4.set_xlabel('time [ms]', size=10)
+    
+if save_fig:
+    file_name = input("File Name?")
+    fig.savefig('data/{}.pdf'.format(file_name))
+    
 #%% PLOT SPECS
 '''
 fig = plt.figure(dpi=85)
