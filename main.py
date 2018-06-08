@@ -9,10 +9,7 @@ Created on Fri May 25 13:20:06 2018
 
 import numpy as np
 import pandas as pd
-import matplotlib.pyplot as plt
-import matplotlib.gridspec as gridspec
 from scipy import integrate
-from matplotlib.ticker import FormatStrFormatter
 
 
 #%% needed functions and parameters import
