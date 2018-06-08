@@ -32,8 +32,7 @@ volt = True
 chann = True
 curr = True
 isyn = True
-save_fig = False
-
+save_fig = True
 num_axes = sum([volt, chann, curr, isyn])
 num_axes
 
@@ -60,14 +59,20 @@ if volt:
 
 if chann:
     channels = pd.read_csv('data/mhn_channels_1compmod.csv')
-    ax2.plot(channels['time'], channels['m_channel'], channels['time'], channels['h_channel'], channels['time'], channels['n_channel'])
+    ax2.plot(channels['time'], channels['m_channel'], channels['time'], channels['h_channel'],  channels['time'], channels['n_channel'])
     ax2.set_ylabel('m, h, n\nchannel', size=10)
+    legend = ax2.legend(['m', 'h', 'n'],loc='center right', frameon = True)
+    frame = legend.get_frame()
+    frame.set_color('white')
     plt.setp(ax2.get_xticklabels(), visible=False)
 
 if curr:
     currents = pd.read_csv('data/currents_1compmod.csv')
     ax3.plot(currents['time'], currents['I_Na'], currents['time'], currents['I_K'], currents['time'], currents['I_leak'])
     ax3.set_ylabel('I.Na, I.K,\nI.leak [mA]', size=10)
+    legend = ax3.legend(['I_Na', 'I_K', 'I_leak'],loc='center right', frameon = True)
+    frame = legend.get_frame()
+    frame.set_color('white')
     ax3.yaxis.set_major_formatter(FormatStrFormatter('%.1e'))
     plt.setp(ax3.get_xticklabels(), visible=False)
     

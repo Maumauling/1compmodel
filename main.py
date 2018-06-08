@@ -22,7 +22,7 @@ from currents import I_Na, I_K, I_leak, I_syn, mhnV
 
 time_step = 0.01  # [ms]
 t_range = np.arange(0, 50, time_step)  # [ms]
-f = 0.2# sound frequency
+f = 0.3 # sound frequency [mHz]
 delta = 0  # interaural phase difference
 C_som = 24 * 10**(-12)  # [mA * s / mV]
 
