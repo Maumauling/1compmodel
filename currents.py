@@ -43,6 +43,7 @@ def mhnV(y, t, C, g_Na, E_Na, g_K, E_K, g_leak, E_leak, g_DC, g_AC, f, delta, E_
     ''' runge kutta workaround for system of 4 ODEs,
     define variables as y,
     dydt-vector includes righthandside of variable's ODE, callable for odeint'''
+
     m,h,n,V = y
     dmdt = 2*(alpha_m(V)*(1-m) - beta_m(V)*m)
     dhdt = 2*(alpha_h(V)*(1-h) - beta_h(V)*h)

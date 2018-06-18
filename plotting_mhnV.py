@@ -32,7 +32,8 @@ volt = True
 chann = True
 curr = True
 isyn = True
-save_fig = True
+save_fig = False
+
 num_axes = sum([volt, chann, curr, isyn])
 num_axes
 

@@ -24,6 +24,8 @@ g_DC = 11.88 * 10**(-9)  # [mA / mV]
 ampl_left = 1
 ampl_right = 1
 
+C_som = 24 * 10**(-12)  # [mA * s / mV]
+
 
 #%% reversal potentials
     

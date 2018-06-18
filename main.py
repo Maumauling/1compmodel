@@ -24,7 +24,7 @@ time_step = 0.01  # [ms]
 t_range = np.arange(0, 50, time_step)  # [ms]
 f = 0.3 # sound frequency [mHz]
 delta = 0  # interaural phase difference
-C_som = 24 * 10**(-12)  # [mA * s / mV]
+
 
 #%% initialize ODE for solving membrane voltage
 
